@@ -1,18 +1,27 @@
+import { useInsertionEffect } from "react";
+
 const Todo = ({ setTodos, todos, todo }) => {
   const Completar = () => {
-      // Deberiamos:
-      /**
-       * Agarrar el objecto del array todos
-       * Cambiarlo
-       * Actualizar el array llamando a la funcion setTodos
-       */
-      const todo = todos.find((item) => item.text === todo.text);
-      if (todo) {
-        todo.completed = new Date();
-      }
+    const index = todos.findIndex((item) => item.text === todo.text);
 
+    if (index !== -1) {
+      const updatedTodos = [...todos];
       
+      const updatedTodo = { ...updatedTodos[index] };
+      
+      if(updatedTodo.completed){
+        updatedTodo.completed = null;
+      }else{
+      updatedTodo.completed = new Date();
+    }
+      updatedTodos[index] = updatedTodo;
 
+      setTodos(updatedTodos);
+    }
+      
+    // * Agarrar el objecto del array todos
+    // * Cambiarlo
+    // * Actualizar el array llamando a la funcion setTodos
   };
 
   return (
