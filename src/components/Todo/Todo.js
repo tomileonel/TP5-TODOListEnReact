@@ -7,7 +7,7 @@ const Todo = ({ setTodos, todos, todo }) => {
     if (index !== -1) {
       const updatedTodos = [...todos];
       
-      const updatedTodo = { ...updatedTodos[index] };
+      const updatedTodo =  updatedTodos[index] ;
       
       if(updatedTodo.completed){
         updatedTodo.completed = null;
